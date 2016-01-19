@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ex02</title>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="js/noty/packaged/jquery.noty.packaged.js"></script>
+<script src="noty-base.js"></script>
+<link rel="stylesheet" type="text/css" href="../Semantic/semantic.css">
+<script src="../Semantic/semantic.js"></script>
+</head>
+
+<body>
+      
+      <input type='submit' value='Send' name='Submit' id='send' class="ui basic blue button"/>
+</body>
+<script>
+$('#send').click(function(){
+  $.get("ex02.php", function(){})
+  .done(function(data){
+        generate("success", data.name);
+    })
+    .always(function(data){
+      generate("message", data.name);
+    });
+});
+</script>
+</html>

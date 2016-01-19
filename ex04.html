@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ex04</title>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../Semantic/semantic.css">
+<script src="../Semantic/semantic.js"></script>
+<script src="noty-base.js"></script>
+</head>
+
+<body>
+  <form id='form1'>
+    <div class="ui left icon input">
+    <input type="email" name="email" id="email" placeholder="email">
+    <i class="mail icon"></i>
+    </div>
+    </form>
+    <br>
+      <input type='button' value='Check' id='button' class="ui basic blue button"/>
+      <input type='button' value='Load noty' id='load' class="ui basic blue button"/>
+</body>
+<script>
+url = 'js/noty/packaged/jquery.noty.packaged.js';
+$(document).ready(function(){
+    $('#load').click(function(){
+      $.getScript( url )
+        .done(function( data,script, textStatus ) {
+          generate('success', 'Noty Loaded');
+        })
+        .fail(function( jqxhr, settings, exception ) {
+          generate('error', 'Loading error');
+      });
+    });
+});
+
+
+$(document).ready(function(){
+    $('#button').click(function(){
+        $.post('ex03.php',  $( "#form1" ).serialize() )
+        .done(function(data){
+            generate('success', data);
+        })
+        .fail(function(req, status, error){
+          generate('error',req.responseText);
+        });
+    });
+});
+
+</script>
+</html>
